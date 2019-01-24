@@ -1,0 +1,48 @@
+$border-color: #ededed;
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 80px;
+	height: 100vh;
+	border-right: 1px solid $border-color;
+
+	.inner,
+	.inner .menu {
+		height: 100%;
+	}
+
+	.inner .menu {
+		display: flex;
+		flex-direction: column;
+		justify-content: start;
+
+		.listTop,
+		.listBottom {
+			display: flex;
+			flex-direction: column;
+			justify-content: start;
+
+			li {
+				min-height: 50px;
+
+				button {
+					width: 100%;
+					height: 50px;
+					border: none;
+				}
+			}
+		}
+
+		.listTop {
+			flex: 1 0 auto;
+		}
+	}
+}
+
+.menu {
+	.menuList {
+		background: #f00;
+	}
+}
