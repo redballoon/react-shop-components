@@ -1,3 +1,6 @@
+// import global css
+// https://github.com/css-modules/css-modules/pull/65
+
 $border-color: #ededed;
 
 .sidebar {
@@ -8,6 +11,26 @@ $border-color: #ededed;
 	height: 100vh;
 	border-right: 1px solid $border-color;
 
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		padding: 10px 0;
+	}
+
+	li {
+		text-align: center;
+		padding-bottom: 10px;
+	}
+
+	button {
+		font-size: 25px;
+		padding: 0;
+		margin: 0;
+		border: none;
+	}
+
 	.inner,
 	.inner .menu {
 		height: 100%;
@@ -16,29 +39,24 @@ $border-color: #ededed;
 	.inner .menu {
 		display: flex;
 		flex-direction: column;
-		justify-content: start;
+		justify-content: flex-start;
+	}
 
-		.listTop,
-		.listBottom {
-			display: flex;
-			flex-direction: column;
-			justify-content: start;
+	.list {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
 
-			li {
-				min-height: 50px;
-
-				button {
-					width: 100%;
-					height: 50px;
-					border: none;
-				}
-			}
-		}
-
-		.listTop {
+		&.top {
 			flex: 1 0 auto;
 		}
 	}
+
+	// :global {
+	// 	.button {
+	// 		border: 1px solid #f00;
+	// 	}
+	// }
 }
 
 .menu {

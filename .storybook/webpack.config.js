@@ -1,3 +1,5 @@
+const path = require('path');
+
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -64,21 +66,33 @@ module.exports = {
 				'sass-loader',
 			],
 		},
-		//  {
-		// 	test : /\.s(a|c)ss$/,
-		// 	use : [
-		// 		// MiniCssExtractPlugin.loader,
-		// 		'style-loader',
-		// 		cssLoader,
-		// 		postcssLoader,
-		// 		'sass-loader',
-		// 	],
-		// },
+		{
+			test : /^((?!\.module).)*s(a|c)ss$/,
+			use : [
+				MiniCssExtractPlugin.loader,
+				// 'style-loader',
+				cssLoader,
+				postcssLoader,
+				'sass-loader',
+			],
+		},{
+			test: /\.stories\.jsx?$/,
+			loaders: [require.resolve('@storybook/addon-storysource/loader')],
+			enforce: 'pre',
+		}
 		/*{
 			test : /\.js$/,
 			use : 'babel-loader',
 			exclude : /node_modules/,
 		}, */
 		],
+	},
+	// https://webpack.js.org/configuration/resolve/
+	// https://www.npmjs.com/package/react-bulma-components
+	resolve: {
+		alias: {
+			// needed for bulma components
+			'_variables.sass': path.resolve(__dirname, './../src/sass/_variable.sass'),
+		}
 	},
 };

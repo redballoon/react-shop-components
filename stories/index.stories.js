@@ -2,8 +2,6 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import NavSideBar from '../src/NavSideBar';
-
 // import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
 //
@@ -20,6 +18,3 @@ import NavSideBar from '../src/NavSideBar';
 //       </span>
 //     </Button>
 //   ));
-
-storiesOf('NavSideBar', module)
-	.add('test', () => <NavSideBar />);
