@@ -6,31 +6,46 @@ import Panels from '../src/Panels';
 
 import 'react-bulma-components/src/index.sass';
 
-const state = {
-	panels: {
-		active: 'test',
-		open: true,
-		test: {
-			active: true,
-		}
-	}
-};
+import { withKnobs, text, boolean, select } from '@storybook/addon-knobs';
 
-storiesOf('Panels', module)
-	.add('render component', () => (
 
-		<Panels isOpen={state.panels.open} align="right" activeKey={state.panels.active}>
-		{() => (
-			<>
-				{/* isActive={state.panels['test'].active} */}
-				<Panels.Panel panelKey="test">
-					this is a panel
-				</Panels.Panel>
+const getActiveState = () => text('Active Panel', 'test');
 
-				<Panels.Panel panelKey="test2">
-					this is a panel
-				</Panels.Panel>
-			</>
-		)}
-		</Panels>
-	))
+const getOpenState = () => boolean('Toggle Panel', true);
+
+const getAlignment = () => select(
+	// label
+	'Alignment',
+	// options
+	{
+		Right: 'right',
+		Left: 'left',
+	},
+	// default
+	'right',
+	// group id
+	// 'GROUP-1',
+);
+
+
+
+const stories = storiesOf('Panels', module);
+
+stories.addDecorator(withKnobs);
+
+stories.add('render component with two panels', () => (
+
+	<Panels isOpen={getOpenState()} align={getAlignment()} activeKey={getActiveState()}>
+	{() => (
+		<>
+			<Panels.Panel panelKey="test">
+				this is panel A
+			</Panels.Panel>
+
+			<Panels.Panel panelKey="test2">
+				this is panel B
+			</Panels.Panel>
+		</>
+	)}
+	</Panels>
+));
