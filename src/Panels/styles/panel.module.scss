@@ -1,60 +1,40 @@
 $panel-width: 400px;
 
-.the-panel {
-	display: none;
+.panel-container {
 	position: fixed;
 	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	width: 100%;
+	width: $panel-width;
 	height: 100%;
+	background: #fff;
+	transition: transform 0.35s 0s cubic-bezier(0.46, 0.01, 0.32, 1);
 	z-index: 1;
 
-	&.is-active {
-		display: block;
-	}
-
-	&.align-left .panel-container {
+	&.align-left {
 		left: $panel-width * -1;
 	}
 
-	&.align-right .panel-container {
+	&.align-right {
 		right: $panel-width * -1;
 	}
 
-	&.is-open.align-right .panel-container {
+	&.is-open.align-right {
 		transform: translateX(-100%);
 	}
 
-	&.is-open.align-left .panel-container {
+	&.is-open.align-left {
 		transform: translateX(100%);
 	}
 
-	.panel-container {
-		position: absolute;
-		top: 0;
-		width: $panel-width;
-		height: 100%;
-		background: #fff;
+	.panel-wrapper {
+		padding: 30px;
 
-		transition-property: transform;
-		transition-duration: 0.35s;
-		transition-timing-function: cubic-bezier(0.46, 0.01, 0.32, 1);
-		transition-delay: 0s;
+		.panel {
+			display: none;
+			width: $panel-width;
 
-		.panel-wrapper {
-			padding: 30px;
-
-			.panel {
-				display: none;
-				width: $panel-width;
-
-				&.is-active {
-					display: block;
-				}
+			&.is-active {
+				display: block;
 			}
 		}
 	}
-
 }

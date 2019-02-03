@@ -9,12 +9,14 @@ import classNames from 'classnames';
 import styles from './styles/panel.module.scss'
 
 
+// Panel Component
 const Panel = (props) => (
 	<div className={classNames('content', styles.panel, props.className)}>
 		{props.children}
 	</div>
 )
 
+// Panels Component
 const Panels = class extends Component {
 	static Panel = Panel;
 
@@ -22,15 +24,10 @@ const Panels = class extends Component {
 		super(props);
 	}
 
-	componentDidMount() {
-
-	}
-
 	getStateStyles() {
 		const { isOpen, transition } = this.props;
-		const isActive = isOpen || (transition && !isOpen);
 
-		return { [`${styles['is-open']}`]: isOpen, [`${styles['is-active']}`]: isActive };
+		return { [`${styles['is-open']}`]: isOpen };
 	}
 
 	getPositionStyles() {
@@ -91,11 +88,9 @@ const Panels = class extends Component {
 		const panelsWithActiveClass = this.getPanelsWithActiveClass(children);
 
 		return (
-			<div className={classNames(styles['the-panel'], stateStyles, positionStyles)}>
-				<div className={`${styles['panel-container']}`}>
-					<div className={`${styles['panel-wrapper']}`}>
-						{panelsWithActiveClass}
-					</div>
+			<div className={classNames(styles['panel-container'], stateStyles, positionStyles)}>
+				<div className={`${styles['panel-wrapper']}`}>
+					{panelsWithActiveClass}
 				</div>
 			</div>
 		);
