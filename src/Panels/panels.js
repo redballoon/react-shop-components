@@ -1,31 +1,37 @@
-import React from 'react'
+/* eslint-disable class-methods-use-this */
 
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
 
-import { Component } from 'react'
+import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import styles from './styles/panel.module.scss'
+import styles from './styles/panel.module.scss';
 
 
-// Panel Component
-const Panel = (props) => (
-	<div className={classNames('content', styles.panel, props.className)}>
-		{props.children}
+// //////////////////////////////////////
+// Single Panel Component
+// //////////////////////////////////////
+const Panel = ({ className, children }) => (
+	<div className={classNames('content', styles.panel, className)}>
+		{children}
 	</div>
-)
+);
 
+Panel.propTypes = {
+	className: PropTypes.string,
+	children: PropTypes.element.isRequired,
+};
+Panel.defaultProps = {
+	className: '',
+};
+
+// //////////////////////////////////////
 // Panels Component
+// //////////////////////////////////////
 const Panels = class extends Component {
-	static Panel = Panel;
-
-	constructor(props) {
-		super(props);
-	}
-
 	getStateStyles() {
-		const { isOpen, transition } = this.props;
+		const { isOpen } = this.props;
 
 		return { [`${styles['is-open']}`]: isOpen };
 	}
@@ -49,7 +55,7 @@ const Panels = class extends Component {
 
 		const { children } = props;
 
-		return children ? children : null;
+		return children || null;
 	}
 
 	getPanelsWithActiveClass(children) {
@@ -57,27 +63,28 @@ const Panels = class extends Component {
 			return null;
 		}
 
-		const hasActiveKey = typeof this.props.activeKey !== 'undefined';
+		const { activeKey } = this.props;
+
+		const hasActiveKey = (typeof activeKey === 'number' && activeKey > 0 && !Number.isNaN(activeKey)) || activeKey;
 
 		if (!hasActiveKey) {
 			return children;
 		}
 
 		// add is-active class to the correct panel
-		return React.Children.map(children, (item, index) => {
+		return React.Children.map(children, (item) => {
 			// invalid children
 			if (!item) return null;
 
 			const hasPanelKey = typeof item.props.panelKey !== 'undefined';
-			const active = hasPanelKey && item.props.panelKey === this.props.activeKey;
+			const active = hasPanelKey && item.props.panelKey === activeKey;
 
 			const props = {
-				className: classNames({ [`${styles['is-active']}`]: active })
+				className: classNames({ [`${styles['is-active']}`]: active }),
 			};
 
 			return React.cloneElement(item, props);
-		})
-
+		});
 	}
 
 	render() {
@@ -97,8 +104,22 @@ const Panels = class extends Component {
 	}
 };
 
+Panels.propTypes = {
+	isOpen: PropTypes.bool.isRequired,
+	align: PropTypes.string,
+	activeKey: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.number,
+	]),
+	children: PropTypes.func.isRequired,
+};
+
 Panels.defaultProps = {
 	align: 'left',
+	activeKey: '',
 };
+
+Panels.Panel = Panel;
+
 
 export default Panels;

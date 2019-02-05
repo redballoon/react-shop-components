@@ -1,96 +1,126 @@
-import React from 'react'
+import React, { Component } from 'react';
 
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-import { Component } from 'react'
-
-import classNames from 'classnames';
+// import classNames from 'classnames';
 
 // import BulmaButton from 'react-bulma-components/lib/components/button';
 
 import 'react-bulma-components/lib/components/button/button.sass';
 
-import styles from './styles/cart.module.scss'
+import styles from './styles/cart.module.scss';
 
 
-const Link = (props) => (
-	<a href={props.href} className={`button is-fullwidth is-Large ${styles.button} ${styles.checkout}`} onClick={props.handler} title={props.text}>{props.text}</a>
+// //////////////////////////////////////
+// Link Component
+// //////////////////////////////////////
+const Link = ({ href, text, handler }) => (
+	<a href={href} className={`button is-fullwidth is-Large ${styles.button} ${styles.checkout}`} onClick={handler} title={text}>{text}</a>
 );
 
-const Button = (props) => (
-	<button className={`button is-fullwidth is-Large ${styles.button} ${styles.checkout}`} onClick={props.handler} type="button" title={props.text}>{props.text}</button>
+Link.propTypes = {
+	href: PropTypes.string.isRequired,
+	text: PropTypes.string.isRequired,
+	handler: PropTypes.func,
+};
+
+Link.defaultProps = {
+	handler: () => {},
+};
+
+// //////////////////////////////////////
+// Button Component
+// //////////////////////////////////////
+const Button = ({ handler, text }) => (
+	<button className={`button is-fullwidth is-Large ${styles.button} ${styles.checkout}`} onClick={handler} type="button" title={text}>{text}</button>
 );
 
-const Header = (props) => (
+Button.propTypes = {
+	text: PropTypes.string.isRequired,
+	handler: PropTypes.func,
+};
+
+Button.defaultProps = {
+	handler: () => {},
+};
+
+// //////////////////////////////////////
+// Header Component
+// //////////////////////////////////////
+const Header = ({ title }) => (
 	<header className={`${styles.header}`}>
-		<h2 className={`${styles.title}`}>{props.title}</h2>
+		<h2 className={`${styles.title}`}>{title}</h2>
 	</header>
 );
 
-const Content = (props) => (
+Header.propTypes = {
+	title: PropTypes.string.isRequired,
+};
+
+// //////////////////////////////////////
+// Content Component
+// //////////////////////////////////////
+const Content = ({ children }) => (
 	<div className={`${styles.content}`}>
-		{props.children}
-	{/*
-		<ul className={`${styles.products}`}>
-			{this.props.products.map((product, i) =>
-				<li id={'product-' + i} className={`${styles.product}`} key={`product-${i}`}>
-					<CartItem product={product} messages={this.props.messages}/>
-				</li>
-			)}
-		</ul>
-	*/}
+		{children}
+		{/*
+			<ul className={`${styles.products}`}>
+				{this.props.products.map((product, i) =>
+					<li id={'product-' + i} className={`${styles.product}`} key={`product-${i}`}>
+						<CartItem product={product} messages={this.props.messages}/>
+					</li>
+				)}
+			</ul>
+		*/}
 	</div>
 );
 
-const Footer = (props) => (
+Content.propTypes = {
+	children: PropTypes.element.isRequired,
+};
+
+// //////////////////////////////////////
+// Footer Component
+// //////////////////////////////////////
+const Footer = ({ children }) => (
 	<div className={`${styles.footer}`}>
-		<div className={`${styles['cart-meta']}`}></div>
+		<div className={`${styles['cart-meta']}`} />
 		<div className={`${styles['cart-cta']}`}>
-			{props.children}
-			{/*
-			<button className={`button is-fullwidth is-Large ${styles.button} ${styles.checkout}`} onClick={this.openCheckout} type="button" title="Checkout">Checkout</button>
-			<br/>
-			<button className={`button is-fullwidth is-Large ${styles.button} ${styles.continue}`} onClick={this.onContinue} type="button" title="Continue Shopping">Continue Shopping</button>
-			*/}
+			{children}
 		</div>
 	</div>
 );
 
+Footer.propTypes = {
+	children: PropTypes.element.isRequired,
+};
 
+// //////////////////////////////////////
+// Cart Component
+// //////////////////////////////////////
 const Cart = class extends Component {
-	static Link = Link;
-	static Button = Button;
-	static Header = Header;
-	static Content = Content;
-	static Footer = Footer;
-
-	constructor(props) {
-		super(props);
-	}
-
-	componentDidMount() {
-		console.log('Cart: mount:');
-
-	}
-
 	getChildren() {
 		const { children } = this.props;
-
 		return typeof children === 'function' ? children() : null;
 	}
 
 	render() {
-		const { isOpen } = this.props;
-
 		return (
-			<div className={classNames(styles['cart-panel'], { [`${styles['is-open']}`]: isOpen })}>
-				<div className={`content ${styles.panel}`}>
-					{this.getChildren()}
-				</div>
+			<div className={styles['cart-container']}>
+				{this.getChildren()}
 			</div>
 		);
 	}
 };
 
+Cart.propTypes = {
+	children: PropTypes.element.isRequired,
+};
+
+Cart.Link = Link;
+Cart.Button = Button;
+Cart.Header = Header;
+Cart.Content = Content;
+Cart.Footer = Footer;
 
 export default Cart;

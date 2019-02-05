@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react';
 
 import {
 	withKnobs,
-	boolean,
+	text,
 } from '@storybook/addon-knobs';
 
 import Cart from '../src/Cart';
@@ -13,18 +13,18 @@ import 'react-bulma-components/src/index.sass';
 
 
 // define knobs
-const getOpenState = () => boolean('Toggle Cart', true);
+const getCartTitle = () => text('Title', 'Your Cart');
 
 
 const stories = storiesOf('Cart', module);
 
 stories.addDecorator(withKnobs);
 
-stories.add('render cart with state open', () => (
-	<Cart isOpen={getOpenState()}>
+stories.add('render cart with no products.', () => (
+	<Cart>
 		{() => (
 			<>
-				<Cart.Header title="Your Cart" />
+				<Cart.Header title={getCartTitle()} />
 
 				<Cart.Content />
 
