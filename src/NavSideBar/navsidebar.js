@@ -20,7 +20,7 @@ import styles from './styles/navsidebar.module.scss';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const List = (props) => (
-	<ul className={`${styles.list} ${!props.align ? styles.top : ''}`}>{props.children}</ul>
+	<ul className={`${styles.list} ${!props.align ? styles.top: ''}`}>{props.children}</ul>
 );
 
 List.propTypes = {
@@ -59,7 +59,7 @@ const NavSideBar = class extends Component {
 	getChildren() {
 		const { children } = this.props;
 
-		return typeof children === 'function' ? children() : null;
+		return typeof children === 'function' ? children(): null;
 	}
 
 	render() {

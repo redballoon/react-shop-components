@@ -49,16 +49,16 @@ const postcssLoader = {
 module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename : 'css/common.css',
-			chunkFilename : 'css/[id].css',
-			// filename : 'css/common.[hash].css',
-			// chunkFilename : 'css/[id].[hash].css',
+			filename: 'css/common.css',
+			chunkFilename: 'css/[id].css',
+			// filename: 'css/common.[hash].css',
+			// chunkFilename: 'css/[id].[hash].css',
 		}),
 	],
 	module: {
-		rules : [{
-			test : /\.module\.s(a|c)ss$/,
-			use : [
+		rules: [{
+			test: /\.module\.s(a|c)ss$/,
+			use: [
 				MiniCssExtractPlugin.loader,
 				// 'style-loader',
 				cssModuleLoader,
@@ -67,8 +67,8 @@ module.exports = {
 			],
 		},
 		{
-			test : /^((?!\.module).)*s(a|c)ss$/,
-			use : [
+			test: /^((?!\.module).)*s(a|c)ss$/,
+			use: [
 				MiniCssExtractPlugin.loader,
 				// 'style-loader',
 				cssLoader,
@@ -81,9 +81,9 @@ module.exports = {
 			enforce: 'pre',
 		}
 		/*{
-			test : /\.js$/,
-			use : 'babel-loader',
-			exclude : /node_modules/,
+			test: /\.js$/,
+			use: 'babel-loader',
+			exclude: /node_modules/,
 		}, */
 		],
 	},

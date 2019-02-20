@@ -101,7 +101,7 @@ Footer.propTypes = {
 const Cart = class extends Component {
 	getChildren() {
 		const { children } = this.props;
-		return typeof children === 'function' ? children() : null;
+		return typeof children === 'function' ? children(): null;
 	}
 
 	render() {

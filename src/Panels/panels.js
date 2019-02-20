@@ -49,7 +49,7 @@ const Panels = class extends Component {
 	getFragment() {
 		const { children } = this.props;
 
-		return typeof children === 'function' ? children() : {};
+		return typeof children === 'function' ? children(): {};
 	}
 
 	getChildren(fragment) {

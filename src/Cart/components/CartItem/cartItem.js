@@ -20,7 +20,7 @@ const CartItem = class extends Component {
 			<>
 				<div className={`${styles.image}`}>
 					{/*
-					{this.props.line_item.variant.image ? <img src={this.props.line_item.variant.image.src} alt={`${this.props.line_item.title} product shot`} /> : <SpinContainer><Spin /></SpinContainer>}
+					{this.props.line_item.variant.image ? <img src={this.props.line_item.variant.image.src} alt={`${this.props.line_item.title} product shot`} />: <SpinContainer><Spin /></SpinContainer>}
 					*/}
 				</div>
 				<div className={`${styles.details}`}>
