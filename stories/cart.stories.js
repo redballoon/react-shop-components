@@ -1,7 +1,9 @@
 import React from 'react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { storiesOf } from '@storybook/react';
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 import {
 	withKnobs,
 	text,
@@ -26,11 +28,13 @@ stories.add('render cart with no products.', () => (
 			<>
 				<Cart.Header title={getCartTitle()} />
 
-				<Cart.Content />
+				<Cart.Content></Cart.Content>
 
 				<Cart.Footer>
-					<Cart.Link href="#" handler={() => {}} text="Continue to Checkout" />
-					<Cart.Button handler={() => {}} text="Continue to Shop" />
+					<>
+						<Cart.Link href="#" handler={() => {}} text="Continue to Checkout" />
+						<Cart.Button handler={() => {}} text="Continue to Shop" />
+					</>
 				</Cart.Footer>
 			</>
 		)}
