@@ -29,6 +29,11 @@ $border-color: #ededed;
 		padding: 0;
 		margin: 0;
 		border: none;
+		height: auto;
+	}
+
+	button .icon {
+		margin: 0;
 	}
 
 	.inner,
@@ -52,11 +57,15 @@ $border-color: #ededed;
 		}
 	}
 
-	//:global {
-	// 	.button {
-	// 		border: 1px solid #f00;
-	// 	}
-	// }
+	:global {
+		// .button {
+		// 	border: 1px solid #f00;
+		// }
+		.button .icon:first-child:last-child {
+			margin: 0;
+		}
+
+	}
 }
 
 .menu {

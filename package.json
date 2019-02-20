@@ -12,7 +12,9 @@
     "presets": [
       "@babel/preset-react"
     ],
-		"plugins": ["@babel/plugin-proposal-class-properties"]
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
   },
   "eslintConfig": {
     "extends": "airbnb",
@@ -61,7 +63,7 @@
     "@babel/preset-react": "^7.0.0",
     "@storybook/addon-actions": "^4.1.9",
     "@storybook/addon-links": "^4.1.9",
-		"@storybook/addon-knobs": "^4.1.11",
+    "@storybook/addon-knobs": "^4.1.11",
     "@storybook/addon-storysource": "^4.1.11",
     "@storybook/addons": "^4.1.11",
     "@storybook/react": "^4.1.9",

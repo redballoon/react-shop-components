@@ -1,4 +1,4 @@
-/*! Tue Feb 19 2019::23:24:47 */
+/*! Wed Feb 20 2019::13:15:07 */
 @-webkit-keyframes spinAround {
   from {
     -webkit-transform: rotate(0deg);
@@ -1176,7 +1176,10 @@
     font-size: 25px;
     padding: 0;
     margin: 0;
-    border: none; }
+    border: none;
+    height: auto; }
+  .sidebar__KCzyI button .icon__CDMaZ {
+    margin: 0; }
   .sidebar__KCzyI .inner__by1GV,
   .sidebar__KCzyI .inner__by1GV .menu__3F-4u {
     height: 100%; }
@@ -1206,6 +1209,8 @@
       -webkit-box-flex: 1;
           -ms-flex: 1 0 auto;
               flex: 1 0 auto; }
+  .sidebar__KCzyI .button .icon:first-child:last-child {
+    margin: 0; }
 
 .menu__3F-4u .menuList__FfvvH {
   background: #f00; }
