@@ -12,8 +12,8 @@ import styles from './styles/panel.module.scss';
 // //////////////////////////////////////
 // Single Panel Component
 // //////////////////////////////////////
-const Panel = ({ className, children }) => (
-	<div className={classNames('content', styles.panel, className)}>
+const Panel = ({ className, children, panelKey }) => (
+	<div className={classNames('content', styles.panel, className)} key={panelKey}>
 		{children}
 	</div>
 );
@@ -21,9 +21,11 @@ const Panel = ({ className, children }) => (
 Panel.propTypes = {
 	className: PropTypes.string,
 	children: PropTypes.element.isRequired,
+	panelKey: PropTypes.string,
 };
 Panel.defaultProps = {
 	className: '',
+	panelKey: '',
 };
 
 // //////////////////////////////////////
