@@ -1,8 +1,12 @@
+import './setup.fonts';
+
 import Cart from './Cart';
+
 import NavSideBar from './NavSideBar';
+
 import Panels from './Panels';
 
-export default {
+export {
 	Cart,
 	NavSideBar,
 	Panels,
