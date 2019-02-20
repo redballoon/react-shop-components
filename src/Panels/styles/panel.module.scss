@@ -26,11 +26,12 @@ $panel-width: 400px;
 	}
 
 	.panel-wrapper {
-		padding: 30px;
+		$padding: 30px;
+		padding: $padding;
 
 		.panel {
 			display: none;
-			width: $panel-width;
+			width: $panel-width - ($padding * 2);
 
 			&.is-active {
 				display: block;
