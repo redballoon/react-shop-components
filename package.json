@@ -1,8 +1,8 @@
 {
   "name": "react-shop-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "sandbox to play around with storybook and testing isolated components.",
-  "main": "dist/main.js",
+  "main": "dist/react-shop-components.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",

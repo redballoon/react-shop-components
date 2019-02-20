@@ -52,9 +52,13 @@ const postcssLoader = {
 module.exports = {
 	mode: 'production',
 
+	entry: './src/index.js',
+
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'js/[name].js', // 'js/[name].[chunkhash].js',
+		filename: 'react-shop-components.js', // 'js/[name].[chunkhash].js',
+		library: 'react-shop-components.js',
+		libraryTarget: 'umd',
 	},
 
 	module: {
