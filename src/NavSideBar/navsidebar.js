@@ -1,6 +1,4 @@
-import React from 'react';
-
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -19,20 +17,28 @@ import styles from './styles/navsidebar.module.scss';
 // in components
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const List = (props) => (
-	<ul className={`${styles.list} ${!props.align ? styles.top: ''}`}>{props.children}</ul>
+const noop = () => {};
+
+
+const List = ({ align, children }) => (
+	<ul className={`${styles.list} ${!align ? styles.top : ''}`}>{children}</ul>
 );
 
 List.propTypes = {
 	align: PropTypes.oneOf(['bottom']),
+	children: PropTypes.element.isRequired,
+};
+
+List.defaultProps = {
+	align: undefined,
 };
 
 
-const Button = (props) => (
+const Button = ({ icon, handler }) => (
 	<li>
-		<button type="button" className="button">
+		<button type="button" className="button" onClick={handler}>
 			<Icon size="large">
-				<FontAwesomeIcon icon={props.icon} />
+				<FontAwesomeIcon icon={icon} />
 			</Icon>
 		</button>
 	</li>
@@ -40,31 +46,33 @@ const Button = (props) => (
 
 Button.propTypes = {
 	icon: PropTypes.string.isRequired,
+	handler: PropTypes.func,
+};
+
+Button.defaultProps = {
+	handler: noop,
 };
 
 
 const NavSideBar = class extends Component {
-	constructor(props) {
-		super(props);
-	}
+	// constructor(props) {
+	// 	super(props);
+	// }
 
-	static List = List;
-
-	static Button = Button;
-
-	handler() {
-		
-	}
+	// handler() {
+	// }
 
 	getChildren() {
 		const { children } = this.props;
 
-		return typeof children === 'function' ? children(): null;
+		return typeof children === 'function' ? children() : null;
 	}
 
 	render() {
-		return (<div className={styles.sidebar}>
-			<div className="sidebar-brand"></div>
+		return (
+			<div className={styles.sidebar}>
+				<div className="sidebar-brand" />
+
 				<div className={styles.inner}>
 					<nav className={styles.menu}>
 						{this.getChildren()}
@@ -74,5 +82,12 @@ const NavSideBar = class extends Component {
 		);
 	}
 };
+
+NavSideBar.propTypes = {
+	children: PropTypes.func.isRequired,
+};
+
+NavSideBar.List = List;
+NavSideBar.Button = Button;
 
 export default NavSideBar;
