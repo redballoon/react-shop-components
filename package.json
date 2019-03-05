@@ -1,12 +1,13 @@
 {
   "name": "react-shop-components",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "sandbox to play around with storybook and testing isolated components.",
   "main": "dist/react-shop-components.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+		"build": "npx webpack -p"
   },
   "babel": {
     "presets": [
