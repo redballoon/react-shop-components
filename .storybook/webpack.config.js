@@ -25,9 +25,10 @@ const cssLoader = {
 const cssModuleLoader = {
 	loader: 'css-loader',
 	options: {
-		modules: true,
 		sourceMap: true,
-		localIdentName: '[local]__[hash:base64:5]',
+		modules: {
+			localIdentName: '[local]__[hash:base64:5]',
+		},
 		importLoaders: 2,
 	},
 };
@@ -40,7 +41,7 @@ const postcssLoader = {
 		sourceMap: true,
 		plugins: () => [
 			autoprefixer({
-				browsers: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+				overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
 			})
 		],
 	},
