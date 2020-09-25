@@ -39,13 +39,14 @@ const cssModuleLoader = {
 const postcssLoader = {
 	loader: 'postcss-loader',
 	options: {
-		ident: 'postcss',
 		sourceMap: true,
-		plugins: () => [
-			autoprefixer({
-				overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
-			}),
-		],
+		postcssOptions: {
+			plugins: [
+				autoprefixer({
+					overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+				}),
+			],
+		},
 	},
 };
 
