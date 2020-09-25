@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
 
-const autoprefixer = require('autoprefixer');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -42,9 +41,13 @@ const postcssLoader = {
 		sourceMap: true,
 		postcssOptions: {
 			plugins: [
-				autoprefixer({
-					overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
-				}),
+				// double array
+				[
+					'autoprefixer',
+					{
+						overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+					}
+				]
 			],
 		},
 	},
