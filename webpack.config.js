@@ -14,21 +14,21 @@ const banner = `${today.toDateString()}::${today.toLocaleTimeString()}`;
 
 
 // store configs for css loader
-const cssLoader = {
-	loader: 'css-loader',
-	options: {
-		modules: false,
-		sourceMap: true,
-		importLoaders: 2,
-	},
-};
-
-const cssModuleLoader = {
+// handles both module sass files and non-module sass
+const cssComboLoader = {
 	loader: 'css-loader',
 	options: {
 		sourceMap: true,
 		modules: {
-			localIdentName: '[local]__[hash:base64:5]',
+			// will not work if you need to use ICSS features
+			auto: true,
+
+			// use new recommended values
+			// https://webpack.js.org/loaders/css-loader/#importloaders
+			// for dev: '[path][name]__[local]', for prod: '[hash:base64]',
+
+			// use slightliy modified version of recommended value
+			localIdentName: '[local]__[hash:base64]', // for dev, '[name]__[local]'
 		},
 		importLoaders: 2,
 	},
@@ -77,7 +77,7 @@ module.exports = {
 			use: [
 				MiniCssExtractPlugin.loader,
 				// 'style-loader',
-				cssModuleLoader,
+				cssComboLoader,
 				postcssLoader,
 				'sass-loader',
 			],
@@ -87,7 +87,7 @@ module.exports = {
 			use: [
 				MiniCssExtractPlugin.loader,
 				// 'style-loader',
-				cssLoader,
+				cssComboLoader,
 				postcssLoader,
 				'sass-loader',
 			],

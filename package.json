@@ -5,7 +5,7 @@
   "main": "dist/react-shop-components.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx webpack --production",
+    "build": "npx webpack",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -70,7 +70,7 @@
     "@storybook/react": "^5.3.21",
     "autoprefixer": "^10.0.0",
     "babel-loader": "^8.0.5",
-    "css-loader": "^3.6.0",
+    "css-loader": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
