@@ -145,9 +145,13 @@ module.exports = {
 		// https://github.com/webpack-contrib/uglifyjs-webpack-plugin/releases
 		// https://github.com/webpack-contrib/terser-webpack-plugin
 		new TerserPlugin({
-			cache: true,
-			parallel: true,
+			cache: true, // not needed in wp5, defaults true in dev
 			sourceMap: true,
+
+			// If you use Circle CI or any other environment that doesn't provide
+			// real available count of CPUs then you need to setup explicitly
+			// number of CPUs to avoid Error (defaults to true, takes a boolean or number)
+			parallel: true,
 		}),
 
 		// new BundleAnalyzerPlugin({ generateStatsFile: true }),
