@@ -10,7 +10,12 @@ object-assign
   http://jedwatson.github.io/classnames
 */
 
-/*! Thu Oct 01 2020::2:32:12 AM */
+/*!
+ * Font Awesome Free 5.15.0 by @fontawesome - https://fontawesome.com
+ * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+ */
+
+/*! Thu Oct 01 2020::3:45:14 AM */
 
 /** @license React v16.13.1
  * react-is.development.js
