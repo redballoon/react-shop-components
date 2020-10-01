@@ -1,1 +1,0 @@
-{"version":3,"file":"css/2.css","sources":["webpack:///./node_modules/bulma/sass/utilities/animations.sass"],"sourcesContent":["@keyframes spinAround {\n  from {\n    transform: rotate(0deg); }\n  to {\n    transform: rotate(359deg); } }\n"],"mappings":"AAAA;;AAAA;;AAAA;;","sourceRoot":""}
