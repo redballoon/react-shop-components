@@ -1,6 +1,6 @@
 {
   "name": "react-shop-components",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "sandbox to play around with storybook and testing isolated components.",
   "repository": {
     "type": "git",
