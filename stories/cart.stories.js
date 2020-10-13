@@ -15,7 +15,7 @@ const Template = ({ title }) => (
 	<Cart>
 		{() => (
 			<>
-				<Cart.Header title />
+				<Cart.Header title={title} />
 
 				<Cart.Content />
 

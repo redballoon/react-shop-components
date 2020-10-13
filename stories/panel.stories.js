@@ -29,23 +29,33 @@ export default {
 
 		activeKey: {
 			name: 'Active Panel',
-			control: 'text',
+			control: {
+				type: 'select',
+				options: ['test', 'test2', 'testDoesNotExist'],
+			},
 			defaultValue: 'test',
 		},
-	}
-}
+	},
+};
 
 
 export const withBasePanel = ({ isOpen, align, activeKey }) => (
-	<Panels isOpen={isOpen} align={align} activeKey={activeKey}>
-		{() => (
-			<>
-				<Panels.Panel panelKey="test">this is panel A</Panels.Panel>
+	<div style={{
+		position: 'absolute',
+		width: '100%',
+		height: '100%',
+		background: '#eee'
+	}}>
+		<Panels isOpen={isOpen} align={align} activeKey={activeKey}>
+			{() => (
+				<>
+					<Panels.Panel panelKey="test">this is panel A</Panels.Panel>
 
-				<Panels.Panel panelKey="test2">this is panel B</Panels.Panel>
-			</>
-		)}
-	</Panels>
+					<Panels.Panel panelKey="test2">this is panel B</Panels.Panel>
+				</>
+			)}
+		</Panels>
+	</div>
 );
 
 withBasePanel.storyName = 'render component with two panels';
