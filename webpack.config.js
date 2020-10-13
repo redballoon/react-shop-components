@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
 
-const autoprefixer = require('autoprefixer');
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
@@ -15,21 +14,21 @@ const banner = `${today.toDateString()}::${today.toLocaleTimeString()}`;
 
 
 // store configs for css loader
-const cssLoader = {
-	loader: 'css-loader',
-	options: {
-		modules: false,
-		sourceMap: true,
-		importLoaders: 2,
-	},
-};
-
-const cssModuleLoader = {
+// handles both module sass files and non-module sass
+const cssComboLoader = {
 	loader: 'css-loader',
 	options: {
 		sourceMap: true,
 		modules: {
-			localIdentName: '[local]__[hash:base64:5]',
+			// will not work if you need to use ICSS features
+			auto: true,
+
+			// use new recommended values
+			// https://webpack.js.org/loaders/css-loader/#importloaders
+			// for dev: '[path][name]__[local]', for prod: '[hash:base64]',
+
+			// use slightliy modified version of recommended value
+			localIdentName: '[local]__[hash:base64]', // for dev, '[name]__[local]'
 		},
 		importLoaders: 2,
 	},
@@ -39,13 +38,18 @@ const cssModuleLoader = {
 const postcssLoader = {
 	loader: 'postcss-loader',
 	options: {
-		ident: 'postcss',
 		sourceMap: true,
-		plugins: () => [
-			autoprefixer({
-				overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
-			}),
-		],
+		postcssOptions: {
+			plugins: [
+				// double array
+				[
+					'autoprefixer',
+					{
+						overrideBrowserslist: ['>1%', 'last 4 versions', 'Firefox ESR', 'not ie < 9'],
+					}
+				]
+			],
+		},
 	},
 };
 
@@ -73,7 +77,7 @@ module.exports = {
 			use: [
 				MiniCssExtractPlugin.loader,
 				// 'style-loader',
-				cssModuleLoader,
+				cssComboLoader,
 				postcssLoader,
 				'sass-loader',
 			],
@@ -83,7 +87,7 @@ module.exports = {
 			use: [
 				MiniCssExtractPlugin.loader,
 				// 'style-loader',
-				cssLoader,
+				cssComboLoader,
 				postcssLoader,
 				'sass-loader',
 			],
@@ -141,9 +145,13 @@ module.exports = {
 		// https://github.com/webpack-contrib/uglifyjs-webpack-plugin/releases
 		// https://github.com/webpack-contrib/terser-webpack-plugin
 		new TerserPlugin({
-			cache: true,
-			parallel: true,
+			cache: true, // not needed in wp5, defaults true in dev
 			sourceMap: true,
+
+			// If you use Circle CI or any other environment that doesn't provide
+			// real available count of CPUs then you need to setup explicitly
+			// number of CPUs to avoid Error (defaults to true, takes a boolean or number)
+			parallel: true,
 		}),
 
 		// new BundleAnalyzerPlugin({ generateStatsFile: true }),

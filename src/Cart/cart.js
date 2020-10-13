@@ -76,7 +76,7 @@ const Content = ({ children }) => (
 );
 
 Content.propTypes = {
-	children: PropTypes.element.isRequired,
+	children: PropTypes.node,
 };
 
 // //////////////////////////////////////
@@ -92,7 +92,7 @@ const Footer = ({ children }) => (
 );
 
 Footer.propTypes = {
-	children: PropTypes.element.isRequired,
+	children: PropTypes.node.isRequired,
 };
 
 // //////////////////////////////////////
@@ -114,7 +114,7 @@ const Cart = class extends Component {
 };
 
 Cart.propTypes = {
-	children: PropTypes.element.isRequired,
+	children: PropTypes.func.isRequired,
 };
 
 Cart.Link = Link;

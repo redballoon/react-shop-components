@@ -1,30 +1,21 @@
 import React from 'react';
 
-import { storiesOf } from '@storybook/react';
-
-import {
-	withKnobs,
-	text,
-} from '@storybook/addon-knobs';
-
 import Cart from '../src/Cart';
 
 import 'react-bulma-components/src/index.sass';
 
 
-// define knobs
-const getCartTitle = () => text('Title', 'Your Cart');
+export default {
+	title: 'Cart',
+	component: Cart,
+}
 
 
-const stories = storiesOf('Cart', module);
-
-stories.addDecorator(withKnobs);
-
-stories.add('render cart with no products.', () => (
+const Template = ({ title }) => (
 	<Cart>
 		{() => (
 			<>
-				<Cart.Header title={getCartTitle()} />
+				<Cart.Header title={title} />
 
 				<Cart.Content />
 
@@ -35,4 +26,10 @@ stories.add('render cart with no products.', () => (
 			</>
 		)}
 	</Cart>
-));
+);
+
+
+export const NoProducts = Template.bind({});
+
+NoProducts.storyName = 'render cart with no products.';
+NoProducts.args = { title: 'Your Cart' };

@@ -1,4 +1,5 @@
-$panel-width: 400px;
+$panel-padding: 30px;
+$panel-width: 430px; // 400 + padding
 
 .panel-container {
 	position: fixed;
@@ -26,11 +27,12 @@ $panel-width: 400px;
 	}
 
 	.panel-wrapper {
-		padding: 30px;
+		padding: $panel-padding;
 
 		.panel {
 			display: none;
-			width: $panel-width;
+			width: 100%;
+			// width: $panel-width;
 
 			&.is-active {
 				display: block;

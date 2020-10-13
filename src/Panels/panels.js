@@ -20,13 +20,14 @@ const Panel = ({ className, children, panelKey }) => (
 
 Panel.propTypes = {
 	className: PropTypes.string,
-	children: PropTypes.element.isRequired,
+	children: PropTypes.node.isRequired,
 	panelKey: PropTypes.string,
 };
 Panel.defaultProps = {
 	className: '',
 	panelKey: '',
 };
+
 
 // //////////////////////////////////////
 // Panels Component
